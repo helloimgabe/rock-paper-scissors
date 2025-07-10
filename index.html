@@ -1,70 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
 </head>
+
 <body>
     <script>
-        //Javascript goes here
-        
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
+        //Score Variables
         let humanScore = 0;
         let computerScore = 0;
-       
-        //Create function named getComputerChoice
-            //Return (randomly) three string values: "rock", "paper", or "scissors" < - math.Random can be used here. No arrays necessary.
-        
-          function getComputerChoice(min, max) {
-            const minCeiled = Math.ceil(1);
-            const maxFloored = Math.floor(3);
-            return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);    
+
+
+        //STARTS GAME
+        playGame();
+
+        //FUNCTIONS SECTION
+
+        //MAIN GAME FUNCTION
+        function playGame() {
+            for (let i = 0; i < 5; i++) {
+                let humanChoice = getHumanChoice();
+                let computerChoice = getComputerChoice();
+                playRound(humanChoice, computerChoice);
+            }
+            //GAME COMPLETION TEXT
+            if (humanScore > computerScore) {
+                console.log("Congratulations! You won! 🏆")
+            }
+            else if (humanScore === computerScore) {
+                console.log("Wow! It's a tie. What are the odds?! 😱");
+            }
+            else if (humanScore < computerScore) {
+                console.log("You lost. Better luck next time! 😔🤘");
+            }
         }
 
-        
-        //Create function named getHumanChoice
-            //Prompt to get user's input. 
-            //Return numerical value (1, 2, 3) 
-        
-            function getHumanChoice() {
-                let answer = prompt("Please enter rock, paper, or scissors.");
-                
-                if (answer.toLowerCase() === "rock") {
-                    console.log("Rock selected");
-                }
-                else if (answer.toLowerCase() === "paper") {
-                    console.log("Paper selected");
-                }
-                else (answer.toLowerCase() === "scissors") {
-                    console.log("Scissors selected");
-                } 
-                    
-                }
+        //PLAY ROUND FUNCTION
+        function playRound(humanChoice, computerChoice) {
 
-    
-       
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-            //Create function named playRound with two parameters: getComputerChoice and getHumanChoice
-            //Make function case insensitive for humanChoice
-            //Console.log string values for wins/losses e.g "You lost! Paper beats Rock" or "You won! Rock beats Scissors" etc.
-            //Increment humanScore or computerScore variable based on round winner
-        
-        //Create function named playGame that calls playRound 5 times
-            //Move playRound function to be declared within playGame function
-            //Create for loop, initialize i to 0, if i < 4, i++ to stop the game at 5 plays
+            //HUMAN WINS
+            if ((humanChoice === 1) && (computerChoice === 3)) {
+                console.log("You won! Rock beats scissors.");
+                humanScore++;
+                console.log(`Your score: ${humanScore} || Computer's score: ${computerScore}`);
+            }
+            else if ((humanChoice === 2) && (computerChoice === 1)) {
+                console.log("You won! Paper beats rock.");
+                humanScore++;
+                console.log(`Your score: ${humanScore} || Computer's score: ${computerScore}`);
+            }
+            else if ((humanChoice === 3) && (computerChoice === 2)) {
+                console.log("You won! Scissors beats paper.");
+                humanScore++;
+                console.log(`Your score: ${humanScore} || Computer's score: ${computerScore}`);
+            }
 
+            //HUMAN AND COMPUTER TIE
+            else if (humanChoice === computerChoice) {
+                console.log("It's a tie! You both chose the same!");
+                console.log(`Your score: ${humanScore} || Computer's score: ${computerScore}`);
+            }
+
+            //COMPUTER WINS
+            else if ((computerChoice === 1) && (humanChoice === 3)) {
+                console.log("You lost. The computer chose rock. Rock beats scissors!");
+                computerScore++;
+                console.log(`Your score: ${humanScore} || Computer's score: ${computerScore}`);
+            }
+            else if ((computerChoice === 2) && (humanChoice === 1)) {
+                console.log("You lost. The computer chose paper. Paper beats rock!");
+                computerScore++;
+                console.log(`Your score: ${humanScore} || Computer's score: ${computerScore}`);
+            }
+            else if ((computerChoice === 3) && (humanChoice === 2)) {
+                console.log("You lost. The computer chose scissors. Scissors beats paper!");
+                computerScore++;
+                console.log(`Your score: ${humanScore} || Computer's score: ${computerScore}`);
+            }
+        }
+
+        //COMPUTER SELECTION FUNCTION
+        function getComputerChoice() {
+            const minNum = 1; // always rounds up and returns the smallest integer >= given number
+            const maxNum = 3; //always rounds down and returns the largest integer <= given number
+            return Math.floor(Math.random() * (maxNum - minNum + 1) + minNum); // (random floating point number between 0 and 1) * (3 - 1 + 1) + 1) = N. N then is rounded down to the largest integer.
+        }
+
+
+        //USER SELECTION FUNCTION
+        function getHumanChoice() {
+            let answer = prompt("Best of luck! What'll it be. . . rock, paper, or scissors? 🤔");
+            if (answer.toLowerCase() === "rock") {
+                return 1;
+            } else if (answer.toLowerCase() === "paper") {
+                return 2;
+            } else if (answer.toLowerCase() === "scissors")
+                return 3;
+        }
     </script>
-    
 </body>
+
 </html>
