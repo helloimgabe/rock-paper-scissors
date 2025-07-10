@@ -8,8 +8,62 @@
 <body>
     <script>
         //Javascript goes here
+        
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        let humanScore = 0;
+        let computerScore = 0;
+       
+        //Create function named getComputerChoice
+            //Return (randomly) three string values: "rock", "paper", or "scissors" < - math.Random can be used here. No arrays necessary.
+        
+          function getComputerChoice(min, max) {
+            const minCeiled = Math.ceil(1);
+            const maxFloored = Math.floor(3);
+            return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);    
+        }
 
         
+        //Create function named getHumanChoice
+            //Prompt to get user's input. 
+            //Return numerical value (1, 2, 3) 
+        
+            function getHumanChoice() {
+                let answer = prompt("Please enter rock, paper, or scissors.");
+                
+                if (answer.toLowerCase() === "rock") {
+                    console.log("Rock selected");
+                }
+                else if (answer.toLowerCase() === "paper") {
+                    console.log("Paper selected");
+                }
+                else (answer.toLowerCase() === "scissors") {
+                    console.log("Scissors selected");
+                } 
+                    
+                }
+
+    
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+            //Create function named playRound with two parameters: getComputerChoice and getHumanChoice
+            //Make function case insensitive for humanChoice
+            //Console.log string values for wins/losses e.g "You lost! Paper beats Rock" or "You won! Rock beats Scissors" etc.
+            //Increment humanScore or computerScore variable based on round winner
+        
+        //Create function named playGame that calls playRound 5 times
+            //Move playRound function to be declared within playGame function
+            //Create for loop, initialize i to 0, if i < 4, i++ to stop the game at 5 plays
+
     </script>
     
 </body>
